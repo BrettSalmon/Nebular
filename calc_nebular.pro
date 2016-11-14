@@ -275,6 +275,10 @@ if keyword_set(nolya) then begin
    Z=Z[1:(n_elements(Z)-1)]
 endif
 
+; Trim away any lines out of the desired range
+lam_rest = lam_rest[where(lam_rest ge min(lambda) and lam_rest le max(lambda))]
+Z = Z[where(lam_rest ge min(lambda) and lam_rest le max(lambda))]
+
 ;Compute emission line fluxes
 flux=dblarr(n_elements(lam_rest))
 for i=0,n_elements(lam_rest)-1 do flux(i)= 4.78d-13*(10.0d0^N_lyc)*(1.0d0-f_esc)*Z(i)*(1.0d0/3.839d33)$
