@@ -12,6 +12,8 @@ can be found in the header.
 
 The program was originally written in IDL, and has now 
 been rewritten in Python 3. 
+Python speed: 0.0109 seconds per run
+IDL speed:    0.0019 seconds per run
 
 If you use this program, please cite the following paper:
 Salmon et al. (2015) http://adsabs.harvard.edu/abs/2015ApJ...799..183S
