@@ -11,7 +11,7 @@
 #    models
 #    WARNING: NEBULAR CONTINUUM IS NOT YET RELIABLE FOR SCIENCE
 # CALLING SEQUENCE:
-#    python > import calc_nebular
+#    python > from calc_nebular import calc_nebular
 #    python > bcflux = calc_nebular(bc03_wavelength_array,n_lyc=45,metallicity=4e-4, f_esc=0.0)
 # INPUTS:
 #    bc03_wavelength_array - the wavelength array to which you are adding the flux.
@@ -282,6 +282,10 @@ def calc_nebular(input_lambda, metallicity=2e-2, nolya=0.0, N_lyc=0.0, f_esc=0.0
     if (nolya==1):
         lam_rest=lam_rest[1:]
         Z=Z[1:]
+        
+    ## Trim away any lines out of the desired range
+    Z=Z[(lam_rest >= min(input_lambda)) & (lam_rest <= max(input_lambda))]
+    lam_rest=lam_rest[(lam_rest >= min(input_lambda)) & (lam_rest <= max(input_lambda))]
     
     ## Compute the emission line flux
     lineflux=[]
